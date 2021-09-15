@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.stream.Stream;
 
 public class Graph<Label> {
   private class Edge {
@@ -39,6 +40,10 @@ public class Graph<Label> {
       graph.addArc(e.destination, e.source, e.label);
     });
     return graph;
+  }
+
+  public Stream<Integer> destinations(int source) {
+    return incidency.get(source).stream().map(e -> e.destination);
   }
 
   @Override
