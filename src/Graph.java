@@ -14,8 +14,8 @@ public class Graph<Label> {
     }
   }
 
-  private int cardinal;
-  private ArrayList<LinkedList<Edge>> incidency;
+  private final int cardinal;
+  private final ArrayList<LinkedList<Edge>> incidency;
 
   public Graph(int size) {
     cardinal = size;
@@ -31,6 +31,14 @@ public class Graph<Label> {
 
   public void addArc(int source, int dest, Label label) {
     incidency.get(source).addLast(new Edge(source, dest, label));
+  }
+
+  public Graph<Label> transpose() {
+    Graph<Label> graph = new Graph<>(cardinal);
+    incidency.stream().flatMap(l -> l.stream()).forEach(e -> {
+      graph.addArc(e.destination, e.source, e.label);
+    });
+    return graph;
   }
 
   @Override
