@@ -26,11 +26,18 @@ public class GraphParser {
   }
 
   /**
-   * Maps a value x in [-n; [ U ]0; n] to [0; 2n[.
+   * Maps a value x from [-n; 0[ U ]0; n] to [0; 2n[.
    */
-  private static int normalizeVarName(int x, int n) {
+  public static int normalizeVarName(int x, int n) {
     assert x != 0;
     return x > 0 ? x - 1 : n * 2 + x;
+  }
+
+  /**
+   * Inverse of normalizeVarName
+   */
+  public static int unnormalizeVarName(int x, int n) {
+    return x <= 0 ? x + 1 : x - n * 2;
   }
 
   /**
