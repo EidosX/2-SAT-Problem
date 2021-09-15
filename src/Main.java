@@ -10,7 +10,13 @@ public class Main {
 
     List<List<Integer>> stronglyConnectedComponents = Kosaraju.getStronglyConnectedComponents(graph);
 
-    System.out.println(graph);
-    System.out.println(stronglyConnectedComponents);
+    for (List<Integer> component : stronglyConnectedComponents)
+      for (int i = 0; i < component.size(); ++i)
+        component.set(i, GraphParser.unnormalizeVarName(component.get(i), graph.order() / 2));
+
+    boolean result = stronglyConnectedComponents.stream()
+        .allMatch(c -> c.stream().noneMatch(node -> c.contains(-node)));
+
+    System.out.println("Formula is " + (result ? "SATISFIABLE" : "UNSATISFIABLE"));
   }
 }
