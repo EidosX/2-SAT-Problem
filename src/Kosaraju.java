@@ -14,11 +14,12 @@ public class Kosaraju {
     Graph<?> transposed = graph.transpose();
 
     for (int i = suffixTraversalOrder.size() - 1; i >= 0; --i) {
-      if (visited.contains(i))
+      int node = suffixTraversalOrder.get(i);
+      if (visited.contains(node))
         continue;
 
       scc.add(new LinkedList<>());
-      dfs.traverse(transposed, i, visited);
+      dfs.traverse(transposed, node, visited);
     }
     return scc;
   }
