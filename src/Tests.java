@@ -9,8 +9,13 @@ public class Tests {
     Graph<String> graph2 = parser.parse(new Scanner(new File("assets/test-1.txt")));
     Graph<String> graph3 = parser.parse(new Scanner(new File("assets/test-2.txt")));
 
-    assert (SAT2.isSatisfiable(graph1) == true);
-    assert (SAT2.isSatisfiable(graph2) == false);
-    assert (SAT2.isSatisfiable(graph3) == true);
+    assertEquals(SAT2.isSatisfiable(graph1), true);
+    assertEquals(SAT2.isSatisfiable(graph2), false);
+    assertEquals(SAT2.isSatisfiable(graph3), true);
+  }
+
+  public static <T> void assertEquals(T o1, T o2) {
+    if (!o1.equals(o2))
+      throw new AssertionError(o1 + " != " + o2);
   }
 }
