@@ -4,12 +4,11 @@ import java.util.List;
 
 public class Kosaraju {
   public static List<List<Integer>> getStronglyConnectedComponents(Graph<?> graph) {
-    ArrayList<Integer> suffixTraversalOrder = getSuffixTraversalOrder(graph);
+    List<Integer> suffixTraversalOrder = getSuffixTraversalOrder(graph);
 
-    ArrayList<List<Integer>> scc = new ArrayList<>();
+    List<List<Integer>> scc = new ArrayList<>();
     DFS dfs = new DFS();
-    dfs.setOnExitNode(node -> scc.get(scc.size() - 1).add(node));
-    LinkedList<Integer> visited = new LinkedList<>();
+    List<Integer> visited = new LinkedList<>();
 
     Graph<?> transposed = graph.transpose();
 
@@ -18,7 +17,9 @@ public class Kosaraju {
       if (visited.contains(node))
         continue;
 
-      scc.add(new LinkedList<>());
+      LinkedList<Integer> component = new LinkedList<>();
+      scc.add(component);
+      dfs.setOnExitNode(n -> component.add(n));
       dfs.traverse(transposed, node, visited);
     }
     return scc;
