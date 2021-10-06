@@ -8,10 +8,12 @@ public class Tests {
     Graph<String> graph1 = parser.parse(new Scanner(new File("assets/formule-2-sat.txt")));
     Graph<String> graph2 = parser.parse(new Scanner(new File("assets/test-1.txt")));
     Graph<String> graph3 = parser.parse(new Scanner(new File("assets/test-2.txt")));
+    Graph<String> graph4 = parser.parse(new Scanner(new File("assets/test-3.txt")));
 
     assertEquals(SAT2.isSatisfiable(graph1), true);
     assertEquals(SAT2.isSatisfiable(graph2), false);
     assertEquals(SAT2.isSatisfiable(graph3), true);
+    assertEquals(SAT2.isSatisfiable(graph4), true);
   }
 
   public static <T> void assertEquals(T o1, T o2) {
